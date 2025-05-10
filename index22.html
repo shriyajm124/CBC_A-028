@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+<title>AI Travel Planner - Eco & Community Focused</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: #e8f0ef;
+    color: #184a45;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px 30px;
+    font-size: 15px;
+    max-width: 350px;
+    margin: auto;
+    user-select: none;
+  }
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: #0c3c32;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .planner-container {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(24, 74, 69, 0.15);
+    padding: 20px 16px;
+    width: 100%;
+    max-width: 350px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .question {
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin-bottom: 18px;
+    color: #0c3c32;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  label {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #34695c;
+    user-select: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="radio"]:checked + label {
+    background-color: #2f847c;
+    color: white;
+    border-color: #2f847c;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  button {
+    background-color: #0c3c32;
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    flex-grow: 1;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  button:hover:not(:disabled) {
+    background-color: #064032;
+  }
+  .results {
+    margin-top: 14px;
+    color: #0c3c32;
+  }
+  .destination {
+    background: #2f847c;
+    color: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(47,132,124,0.4);
+    user-select: text;
+    font-size: 0.92rem;
+  }
+  .destination h3 {
+    margin-bottom: 8px;
+    font-weight: 900;
+    font-size: 1.3rem;
+  }
+  .destination p {
+    line-height: 1.3;
+  }
+  .stay-list {
+    margin-top: 12px;
+    background: rgba(255 255 255 / 0.15);
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 7px rgb(255 255 255 / 0.3);
+  }
+  .stay-list h4 {
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  .stay {
+    background: #a2d6ce;
+    color: #0c3c32;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgb(15 59 49 / 0.3);
+  }
+  .stay strong {
+    display: block;
+    margin-bottom: 3px;
+  }
+  .stay a {
+    color: #064032;
+    text-decoration: underline;
+  }
+  @media (max-height: 600px) and (max-width: 350px) {
+    body {
+      padding: 10px 8px 25px;
+      font-size: 14px;
+    }
+    .planner-container {
+      min-height: 280px;
+      padding: 18px 14px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .question {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+    .destination {
+      font-size: 0.9rem;
+    }
+    .stay {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>AI Travel Planner</h1>
+<div class="planner-container" role="form" aria-live="polite" aria-label="Travel preference questionnaire">
+  <div id="planner-content">
+    <!-- Questions will be displayed here -->
+  </div>
+  <div class="buttons">
+    <button id="prevBtn" type="button" disabled aria-label="Previous question">Previous</button>
+    <button id="nextBtn" type="button" disabled aria-label="Next question">Next</button>
+  </div>
+</div>
+
+<script>
+  // Define questions with options and their value scores
+  const questions = [
+    {
+      question: "What type of destination do you prefer?",
+      options: [
+        { text: "Nature and mountains", value: "nature" },
+        { text: "Historic towns and culture", value: "culture" },
+        { text: "Beaches and relaxing", value: "beach" },
+        { text: "Urban city vibes", value: "city" }
+      ]
+    },
+    {
+      question: "How important is eco-friendly accommodation?",
+      options: [
+        { text: "Very important - only eco friendly", value: "eco_strict" },
+        { text: "Somewhat important - prefer eco stays", value: "eco_prefer" },
+        { text: "Not important", value: "eco_none" }
+      ]
+    },
+    {
+      question: "Do you want to experience community-led tours or activities?",
+      options: [
+        { text: "Absolutely! I want local community involvement", value: "community_yes" },
+        { text: "Maybe a little, open to it", value: "community_maybe" },
+        { text: "No, just sightseeing", value: "community_no" }
+      ]
+    },
+    {
+      question: "Preferred climate for your travel?",
+      options: [
+        { text: "Cool / mountain climate", value: "climate_cool" },
+        { text: "Tropical and warm", value: "climate_warm" },
+        { text: "Temperate", value: "climate_temperate" }
+      ]
+    },
+    {
+      question: "What kind of activities interest you?",
+      options: [
+        { text: "Hiking, trekking, nature walks", value: "activity_hiking" },
+        { text: "Museums, cultural experiences", value: "activity_culture" },
+        { text: "Water sports, beach fun", value: "activity_water" },
+        { text: "Food tours, local markets", value: "activity_food" }
+      ]
+    }
+  ];
+
+  // Curated destination data: tags = category, eco, community, climate, activity
+  // Added "link" property for each stay
+  const destinations = [
+    {
+      name: "Kerala Backwaters, India",
+      desc: "Boat through serene canals, enjoy eco-friendly homestays & local cultural tours.",
+      tags: ["nature", "eco_prefer", "community_yes", "climate_warm", "activity_water", "activity_culture"],
+      stays: [
+        { name: "Eco Lodge Vembanad", desc: "Eco-friendly lodge with organic farming and local cuisine.", link: "https://www.ecovembanad.com" },
+        { name: "Houseboat Stays", desc: "Community-run houseboats offering immersive eco stays.", link: "https://www.keralahouseboats.com" }
+      ]
+    },
+    {
+      name: "Bhutan",
+      desc: "Explore rich culture & traditions, stay eco-conscious, with community-led trekking.",
+      tags: ["nature", "culture", "eco_strict", "community_yes", "climate_cool", "activity_hiking", "activity_culture"],
+      stays: [
+        { name: "Eco Retreat Bhutan", desc: "A green resort blending into the Himalayan landscape.", link: "https://ecoretreatbhutan.com" },
+        { name: "Village Homestays", desc: "Authentic community stays with cultural programs.", link: "https://bhutanhomestays.bt" }
+      ]
+    },
+    {
+      name: "Galápagos Islands, Ecuador",
+      desc: "Pristine eco-tourism, stunning wildlife, protected natural habitats & community-led guides.",
+      tags: ["nature", "eco_strict", "community_yes", "climate_warm", "activity_water", "activity_hiking"],
+      stays: [
+        { name: "Eco Island Lodge", desc: "Sustainable lodging with minimal environmental footprint.", link: "https://ecoinislodge.com" },
+        { name: "Community Host Accommodations", desc: "Stay with local families preserving traditions.", link: "https://galapagoscommunitystays.ec" }
+      ]
+    },
+    {
+      name: "Machu Picchu, Peru",
+      desc: "Historic and cultural wonder with mountain hikes, promoting indigenous community tourism.",
+      tags: ["nature", "culture", "eco_prefer", "community_yes", "climate_cool", "activity_hiking", "activity_culture"],
+      stays: [
+        { name: "Eco-Friendly Mountain Lodge", desc: "Comfortable stay with sustainable energy use.", link: "https://machupicchuecolodge.pe" },
+        { name: "Local Community Homes", desc: "Personalized experiences in indigenous-led homes.", link: "https://machupicchuhomestays.pe" }
+      ]
+    },
+    {
+      name: "Costa Rica",
+      desc: "Rainforests, eco-lodges, community project tours, and adventure activities.",
+      tags: ["nature", "eco_strict", "community_yes", "climate_warm", "activity_hiking", "activity_water"],
+      stays: [
+        { name: "Rainforest Eco-Lodge", desc: "Solar-powered lodges surrounded by nature.", link: "https://rainforestecolodge.cr" },
+        { name: "Community Farm Stays", desc: "Help on local farms and learn about sustainable farming.", link: "https://costaricafarmstays.cr" }
+      ]
+    },
+    {
+      name: "Venice, Italy",
+      desc: "Rich cultural heritage, museums and canals but less eco-focused – check local initiatives.",
+      tags: ["culture", "eco_none", "community_maybe", "climate_temperate", "activity_culture", "activity_food"],
+      stays: [
+        { name: "Boutique Historic Hotel", desc: "Centrally located with authentic Venetian decor.", link: "https://veniceboutiquehotel.it" },
+        { name: "Family-Run B&B", desc: "Community supported accommodation with local charm.", link: "https://venicebnbcommunity.it" }
+      ]
+    },
+    {
+      name: "Santorini, Greece",
+      desc: "Iconic beaches and luxury stays, with emerging community eco experiences.",
+      tags: ["beach", "eco_prefer", "community_maybe", "climate_warm", "activity_water", "activity_food"],
+      stays: [
+        { name: "Eco Villas Santorini", desc: "Solar-powered villas with local art and design.", link: "https://ecovillassantorini.gr" },
+        { name: "Community Guesthouses", desc: "Supported by local cooperatives for authentic stays.", link: "https://santorinicommunityhomes.gr" }
+      ]
+    },
+    {
+      name: "Vancouver, Canada",
+      desc: "Urban eco-friendly city with local cultural scenes and surrounded by nature.",
+      tags: ["city", "eco_prefer", "community_maybe", "climate_cool", "activity_hiking", "activity_food"],
+      stays: [
+        { name: "Green Hotel Downtown", desc: "Certified green hotel promoting sustainability.", link: "https://greenhoteldowntown.ca" },
+        { name: "Local Artist Guesthouse", desc: "Stay with local cultural hosts and events.", link: "https://vancouverartistguest.ca" }
+      ]
+    },
+    {
+      name: "Reykjavik, Iceland",
+      desc: "Modern city near amazing nature and eco-conscious travel options.",
+      tags: ["city", "eco_strict", "community_maybe", "climate_cool", "activity_hiking"],
+      stays: [
+        { name: "Eco Boutique Hotel", desc: "Uses geothermal heating and eco-certifications.", link: "https://ecoboutiquehotel.is" },
+        { name: "Community-Run Guest Rooms", desc: "Support local families and eco initiatives.", link: "https://reykjavikcommunityrooms.is" }
+      ]
+    },
+    {
+      name: "Bali, Indonesia",
+      desc: "Beaches, vibrant culture, eco-stays, community yoga and cultural experiences.",
+      tags: ["beach", "eco_prefer", "community_yes", "climate_warm", "activity_water", "activity_culture"],
+      stays: [
+        { name: "Eco Beach Resort", desc: "Organic meals and eco practices on the beach.", link: "https://ecobeachresortbali.com" },
+        { name: "Community Yoga Retreats", desc: "Led by local instructors with cultural immersion.", link: "https://communityyogaretreats.bali" }
+      ]
+    }
+  ];
+
+  let currentStep = 0;
+  let answers = [];
+
+  const plannerContent = document.getElementById('planner-content');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function renderQuestion() {
+    const q = questions[currentStep];
+    let html = <div class="question">${q.question}</div><div class="options">;
+    q.options.forEach((opt, i) => {
+      const checked = answers[currentStep] === opt.value ? 'checked' : '';
+      html += `
+        <div>
+          <input type="radio" id="option${currentStep}_${i}" name="question${currentStep}" value="${opt.value}" ${checked} />
+          <label for="option${currentStep}_${i}">${opt.text}</label>
+        </div>`;
+    });
+    html += "</div>";
+    plannerContent.innerHTML = html;
+
+    checkAnswerSelected();
+
+    const firstOption = document.querySelector(input[name="question${currentStep}"]);
+    if (firstOption) firstOption.focus();
+  }
+
+  function checkAnswerSelected() {
+    const selected = document.querySelector(input[name="question${currentStep}"]:checked);
+    if(selected) {
+      nextBtn.disabled = false;
+    } else {
+      nextBtn.disabled = true;
+    }
+    prevBtn.disabled = currentStep === 0;
+  }
+
+  function recommendDestinations() {
+    // Build a tag frequency map based on answers
+    const tagScore = {};
+    // Map answers to tags
+    const answerTagMap = {
+      // question 0
+      "nature": ["nature"],
+      "culture": ["culture"],
+      "beach": ["beach"],
+      "city": ["city"],
+      // question 1 eco
+      "eco_strict": ["eco_strict", "eco_prefer"],
+      "eco_prefer": ["eco_prefer"],
+      "eco_none": [],
+      // question 2 community
+      "community_yes": ["community_yes"],
+      "community_maybe": ["community_maybe", "community_yes"],
+      "community_no": [],
+      // question 3 climate
+      "climate_cool": ["climate_cool"],
+      "climate_warm": ["climate_warm"],
+      "climate_temperate": ["climate_temperate"],
+      // question 4 activity
+      "activity_hiking": ["activity_hiking"],
+      "activity_culture": ["activity_culture"],
+      "activity_water": ["activity_water"],
+      "activity_food": ["activity_food"]
+    };
+
+    answers.forEach(ans => {
+      const tags = answerTagMap[ans] || [];
+      tags.forEach(tag => {
+        tagScore[tag] = (tagScore[tag] || 0) + 1;
+      });
+    });
+
+    // Normalize eco_strict and eco_prefer weighting
+    if (tagScore["eco_strict"]) tagScore["eco_prefer"] = (tagScore["eco_prefer"] || 0) + tagScore["eco_strict"] * 1.5;
+
+    // Score destinations by matching tags
+    const scoredDestinations = destinations.map(dest => {
+      let score = 0;
+      dest.tags.forEach(tag => {
+        if (tagScore[tag]) score += tagScore[tag];
+      });
+      return { dest, score };
+    }).filter(item => item.score > 0);
+
+    // Sort descending by score
+    scoredDestinations.sort((a,b) => b.score - a.score);
+
+    return scoredDestinations.map(i => i.dest);
+  }
+
+  function showResults() {
+    const recs = recommendDestinations();
+
+    let resultsHTML = <div class="results" aria-live="polite" aria-label="Travel destination recommendations"><h2>Your Recommended Destinations</h2>;
+    if (recs.length === 0) {
+      resultsHTML += <p>Sorry, we couldn't find matching destinations based on your preferences.</p>;
+    } else {
+      recs.forEach(dest => {
+        resultsHTML += `
+          <div class="destination" tabindex="0">
+            <h3>${dest.name}</h3>
+            <p>${dest.desc}</p>`;
+        if(dest.stays && dest.stays.length){
+          resultsHTML += `<div class="stay-list">
+            <h4>Nearby Eco & Community Stays</h4>`;
+          dest.stays.forEach(stay => {
+            const safeUrl = stay.link ? stay.link : "#";
+            resultsHTML += `<div class="stay" tabindex="0">
+              <strong><a href="${safeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Visit website for ${stay.name}">${stay.name}</a></strong>
+              ${stay.desc}
+            </div>`;
+          });
+          resultsHTML += </div>;
+        }
+        resultsHTML += </div>;
+      });
+    }
+    resultsHTML += `</div>
+      <button id="restartBtn" style="background-color:#2f847c; margin-top:20px; border-radius:30px; padding:10px 20px; color:#fff; font-weight:900; cursor:pointer;">Start Over</button>`;
+    plannerContent.innerHTML = resultsHTML;
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      answers = [];
+      currentStep = 0;
+      prevBtn.style.display = 'inline-block';
+      nextBtn.style.display = 'inline-block';
+      renderQuestion();
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+    });
+  }
+
+  plannerContent.addEventListener('change', e => {
+    if(e.target.name === question${currentStep}) {
+      answers[currentStep] = e.target.value;
+      nextBtn.disabled = false;
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if(currentStep < questions.length -1) {
+      currentStep++;
+      renderQuestion();
+      nextBtn.disabled = true;
+    } else {
+      showResults();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if(currentStep > 0) {
+      currentStep--;
+      renderQuestion();
+      nextBtn.disabled = false;
+    }
+  });
+
+  // Initialize
+  renderQuestion();
+</script>
+
+</body>
+</html>

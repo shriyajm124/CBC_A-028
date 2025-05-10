@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Travel Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .quiz-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .question {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .option-label {
+      cursor: pointer;
+      padding: 8px;
+      background-color: #d3eaf1;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .option-label:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Animation for fading between questions */
+    .fade {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>AI Travel Quiz</h1>
+    <div class="question fade" id="questionText"></div>
+    <div class="options fade" id="optionsContainer"></div>
+    <div class="result fade" id="resultText"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What's your ideal vacation destination?",
+        options: [
+          "Relaxing on a beach",
+          "Exploring historical sites",
+          "Hiking in the mountains",
+          "Experiencing urban life"
+        ]
+      },
+      {
+        question: "What activities do you enjoy most while traveling?",
+        options: [
+          "Adventure sports",
+          "Cultural exploration",
+          "Nature walks",
+          "Shopping and dining"
+        ]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let selectedAnswer = null;
+
+    function renderQuestion() {
+      const questionData = quizData[currentQuestion];
+      const questionTextElement = document.getElementById("questionText");
+      const optionsContainer = document.getElementById("optionsContainer");
+
+      // Reset any previous question and options
+      questionTextElement.classList.remove('fade');
+      optionsContainer.classList.remove('fade');
+      
+      // Fade in new question and options
+      setTimeout(() => {
+        questionTextElement.classList.add('fade');
+        optionsContainer.classList.add('fade');
+      }, 0);
+
+      document.getElementById("resultText").textContent = "";
+
+      // Set question text
+      questionTextElement.textContent = questionData.question;
+      optionsContainer.innerHTML = "";  // Clear any previous options
+
+      questionData.options.forEach((option, index) => {
+        const label = document.createElement("label");
+        label.classList.add("option-label");
+        label.textContent = option;
+        label.onclick = () => {
+          selectedAnswer = option;
+          document.querySelectorAll(".option-label").forEach((label) => {
+            label.style.backgroundColor = "#d3eaf1";  // Reset background color for all options
+          });
+          label.style.backgroundColor = "#007bff";  // Highlight selected option
+
+          // Send the selected answer to the backend and get AI's response
+          handleNext();
+        };
+        optionsContainer.appendChild(label);
+      });
+    }
+
+    async function handleNext() {
+      if (selectedAnswer) {
+        try {
+          console.log("Sending user answer to backend:", selectedAnswer); // Debugging line
+          // Send the selected answer to the backend and get OpenAI's response
+          const response = await fetch("http://localhost:5000/get-ai-response", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userInput: selectedAnswer })
+          });
+
+          // Debugging: Check if the request was successful
+          if (!response.ok) {
+            console.error("Failed to get response from the server:", response);
+            document.getElementById("resultText").textContent = "Error communicating with the server!";
+            return;
+          }
+
+          const data = await response.json();
+          const aiResponse = data.response;
+
+          console.log("AI Response:", aiResponse); // Debugging line
+          document.getElementById("resultText").textContent = AI ;suggests: '${aiResponse};'
+
+          // Move to the next question or finish
+          currentQuestion++;
+          if (currentQuestion < quizData.length) {
+            selectedAnswer = null;  // Reset selected answer
+            setTimeout(() => renderQuestion(), 1000);  // Transition to the next question after a brief delay
+          } else {
+            document.getElementById("resultText").textContent = "Thank you for completing the quiz!";
+          }
+        } catch (error) {
+          console.error("Error occurred during fetch:", error);
+          document.getElementById("resultText").textContent = "An error occurred. Please try again later.";
+        }
+      }
+    }
+
+    // Initialize the first question
+    renderQuestion();
+  </script>
+</body>
+</html>

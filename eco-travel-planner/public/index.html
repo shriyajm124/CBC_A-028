@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eco Travel Quiz</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 30px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      margin-top: 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Eco Travel Personality Quiz</h1>
+    <form action="/suggest" method="POST">
+      <p><strong>What kind of travel experience do you crave?</strong></p>
+      <label><input type="checkbox" name="interests" value="adventure"> Adventure – trekking, camping, exploring</label>
+      <label><input type="checkbox" name="interests" value="culture"> Culture – history, temples, local life</label>
+      <label><input type="checkbox" name="interests" value="relaxation"> Relaxation – beaches, retreats</label>
+      <label><input type="checkbox" name="interests" value="sustainability"> Sustainability – eco stays, offbeat places</label>
+
+      <p><strong>Your travel budget (per person):</strong></p>
+      <label><input type="radio" name="budget" value="Under ₹5,000" required> Under ₹5,000</label>
+      <label><input type="radio" name="budget" value="₹5,000 – ₹15,000"> ₹5,000 – ₹15,000</label>
+      <label><input type="radio" name="budget" value="₹15,000 – ₹30,000"> ₹15,000 – ₹30,000</label>
+      <label><input type="radio" name="budget" value="Above ₹30,000"> Above ₹30,000</label>
+
+      <input type="submit" value="Find My Destinations">
+    </form>
+  </div>
+</body>
+</html>

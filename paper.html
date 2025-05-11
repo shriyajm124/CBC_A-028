@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Eco Travel Personality Quiz&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Quicksand', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e7e7e7;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-image: url('https://www.transparenttextures.com/patterns/paper-1.png'); /* Paper-like texture */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 700px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 50px auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(145deg, #ffffff, #f0f0f0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Quicksand', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question h2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.options label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 15px 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ecf0f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease, transform 0.2s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #bbb;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.options label:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #d0d3d4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(1.05);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.options input[type="radio"] {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.navigation {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #27ae60;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:disabled {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #95a5a6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: not-allowed;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:hover:not(:disabled) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #2ecc71;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.results {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #d4efdf;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 8px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination h3 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #145a32;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.eco-stays a {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #82e0aa;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #1b4f72;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.eco-stays a:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #66cc80;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Eco Travel Personality Quiz&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;form id="quizForm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question" id="questionContainer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Questions will be injected here --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" onclick="prevQuestion()" id="prevBtn"&gt;Previous&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" onclick="nextQuestion()" id="nextBtn"&gt;Next&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="results" id="results"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const quiz = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>question: "What kind of travel experience do you crave?",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Adventure – trekking, camping, and exploring", tags: ["adventure", "nature"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Culture – history, temples, and local traditions", tags: ["culture", "heritage"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Relaxation – beaches, nature retreats, and slow travel", tags: ["relaxation", "nature"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Sustainability – eco-friendly stays and offbeat places", tags: ["sustainability", "offbeat"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>question: "What's your ideal weekend getaway?",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Hill station with cool weather and coffee plantations", tags: ["nature", "relaxation"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Village stay with traditional food and crafts", tags: ["culture", "sustainability"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Forest camp or wildlife sanctuary", tags: ["adventure", "nature"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Remote beach with eco-resorts", tags: ["relaxation", "sustainability"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>question: "Which activity sounds most exciting to you?",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Hiking through a nature trail", tags: ["adventure", "nature"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Learning pottery or weaving from locals", tags: ["culture", "sustainability"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Yoga and meditation in the mountains", tags: ["relaxation", "offbeat"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ text: "Volunteering for a community farming project", tags: ["sustainability", "culture"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">const destinations = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Coorg",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: "Coffee estates, waterfalls, and forest hikes. Ideal for nature and adventure lovers.",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tags: ["nature", "relaxation", "adventure"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stays: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Evolve Back Coorg", url: "https://www.evolveback.com/coorg/" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Chingaara Estate Stay", url: "https://chingaara.com/" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Gokarna",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: "A laid-back beach town with yoga retreats and clean beaches.",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tags: ["relaxation", "sustainability", "offbeat"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stays: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Kudle Ocean Front", url: "https://kudleoceanfront.com/" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "SwaSwara Wellness Retreat", url: "https://www.cghearth.com/swaswara/" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Hampi",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: "UNESCO heritage site with ancient ruins and vibrant local life.",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tags: ["culture", "heritage", "offbeat"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stays: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Heritage Resort Hampi", url: "https://www.heritageresorthampi.com/" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Evolve Back Hampi", url: "https://www.evolveback.com/hampi/" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Agumbe",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: "Rainforests, sunsets, and herping adventures in the Western Ghats.",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tags: ["adventure", "nature", "offbeat"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stays: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Doddamane Heritage Stay", url: "https://www.agumbe.com/doddamane/" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "Kabini",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: "A wildlife haven for safaris, riverside lodges, and eco-conscious retreats.",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tags: ["nature", "adventure", "sustainability"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>stays: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Kabini River Lodge", url: "https://www.junglelodges.com/resort/kabini-river-lodge/" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "The Bison Resort", url: "https://www.thebisonresort.com/" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">let currentQuestion = 0;</p>
+<p class="p1">let answers = [];</p>
+<p class="p2"><br></p>
+<p class="p1">function renderQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const container = document.getElementById("questionContainer");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const q = quiz[currentQuestion];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let html = `&lt;h2&gt;${q.question}&lt;/h2&gt;&lt;div class="options"&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>q.options.forEach((opt, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const checked = answers[currentQuestion] === i ? 'checked' : '';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html += `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="radio" name="option" value="${i}" ${checked}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>${opt.text}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>html += '&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container.innerHTML = html;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("prevBtn").disabled = currentQuestion === 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("nextBtn").innerText = currentQuestion === quiz.length - 1 ? "Submit" : "Next";</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function nextQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const selected = document.querySelector('input[name="option"]:checked');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!selected) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert("Please select an option.");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>answers[currentQuestion] = parseInt(selected.value);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentQuestion &lt; quiz.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentQuestion++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>showResults();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function prevQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentQuestion &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentQuestion--;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showResults() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tags = {};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>answers.forEach((ansIndex, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quiz[i].options[ansIndex].tags.forEach(tag =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tags[tag] = (tags[tag] || 0) + 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const result = destinations.filter(dest =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return dest.tags.some(tag =&gt; tags[tag]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const resultsContainer = document.getElementById("results");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let html = "&lt;h2&gt;Your Travel Matches&lt;/h2&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>result.forEach(dest =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html += `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="destination"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;${dest.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;${dest.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="eco-stays"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${dest.stays.map(stay =&gt; `&lt;a href="${stay.url}" target="_blank"&gt;${stay.name}&lt;/a&gt;`).join("&lt;br&gt;")}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("quizForm").style.display = "none";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>resultsContainer.innerHTML = html;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">renderQuestion();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
